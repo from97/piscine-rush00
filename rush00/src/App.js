@@ -23,7 +23,7 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
     font-family: 'Noto Sans', sans-serif;
     font-weight: normal;
-    color: #555;
+    color: #343a3f;
   }
 
   header {
