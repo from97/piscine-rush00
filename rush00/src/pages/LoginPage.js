@@ -10,7 +10,7 @@ const LoginPageStyled = styled.div`
   h2 {
     font-size: 21px;
     font-weight: 600;
-    text-align: left;
+    text-align: center;
   }
 
   span {
@@ -29,6 +29,7 @@ function LoginPage() {
     if (type === "login") setType("join");
     else if (type === "join") setType("login");
   };
+
   return (
     <LoginPageStyled>
       {type === "login" ? (
