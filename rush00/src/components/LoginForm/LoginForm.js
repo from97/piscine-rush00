@@ -2,15 +2,36 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const LoginFormStyled = styled.div`
-  div {
-    text-align: left;
-    margin-top: 10px;
-    margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h2 {
+    letter-spacing: 0.1em;
+  }
+  form {
+    width: 320px;
+    height: 340px;
+    box-sizing: border-box;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .login_field {
+    label {
+      font-weight: 500;
+    }
+    width: 100%;
+    margin-bottom: 25px;
+    letter-spacing: 0.1em;
   }
   input {
     width: 100%;
-    background-color: #f2f2f2;
+    height: 25px;
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
     margin: 1px 1px 1px 1px;
+    color: #036581;
   }
   .error {
     color: red;
@@ -22,7 +43,7 @@ const LoginFormStyled = styled.div`
     border-radius: 20px;
     padding: 6px 10px;
     font-weight: 600;
-    margin: 40px 0;
+    margin: 40px auto 120px;
     :hover {
       background-color: #343a3f;
       color: #fff;
@@ -49,32 +70,25 @@ function LoginForm() {
 
   return (
     <LoginFormStyled>
-      <div>
-        <h2>로그인</h2>
-        <form>
-          <div>
-            <label htmlFor="email">Email: </label>
-            <input
-              id="email"
-              type="email"
-              value={email}
-              onChange={handleEmail}
-            />
-          </div>
-          <div>
-            <label htmlFor="passwd">Password: </label>
-            <input
-              id="passwd"
-              type="password"
-              value={passwd}
-              onChange={handlePasswd}
-            />
-          </div>
-          <button className="uploadButton" onClick={handleClick}>
-            Log in
-          </button>
-        </form>
-      </div>
+      <h2>로그인</h2>
+      <form>
+        <div className="login_field">
+          <label htmlFor="email">Email : </label>
+          <input id="email" type="email" value={email} onChange={handleEmail} />
+        </div>
+        <div className="login_field">
+          <label htmlFor="passwd">Password : </label>
+          <input
+            id="passwd"
+            type="password"
+            value={passwd}
+            onChange={handlePasswd}
+          />
+        </div>
+        <button className="uploadButton" onClick={handleClick}>
+          Log in
+        </button>
+      </form>
     </LoginFormStyled>
   );
 }
