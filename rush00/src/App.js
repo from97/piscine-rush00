@@ -37,7 +37,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <header>
-          <h1>Header</h1>
+          <h1>Markdown Board</h1>
         </header>
         <NavBar />
         <Route path="/" exact={true} component={MainPage} />
