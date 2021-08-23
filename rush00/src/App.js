@@ -18,6 +18,10 @@ const GlobalStyle = createGlobalStyle`
     cursor: pointer;
   }
 
+  li {
+    list-style: none;
+  }
+
   #root {
     width: 100%;
     height: 100%;

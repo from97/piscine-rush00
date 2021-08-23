@@ -7,6 +7,7 @@ const LoginPageStyled = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 50px;
   h2 {
     font-size: 21px;
     font-weight: 600;

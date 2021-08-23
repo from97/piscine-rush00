@@ -2,15 +2,36 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const JoinFormStyled = styled.div`
-  div {
-    text-align: left;
-    margin-top: 10px;
-    margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h2 {
+    letter-spacing: 0.1em;
+  }
+  form {
+    width: 320px;
+    height: 340px;
+    box-sizing: border-box;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .join_field {
+    label {
+      font-weight: 500;
+    }
+    width: 100%;
+    margin-bottom: 25px;
+    letter-spacing: 0.1em;
   }
   input {
     width: 100%;
-    background-color: #f2f2f2;
+    height: 25px;
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
     margin: 1px 1px 1px 1px;
+    color: #036581;
   }
   .error {
     color: red;
@@ -22,7 +43,7 @@ const JoinFormStyled = styled.div`
     border-radius: 20px;
     padding: 6px 10px;
     font-weight: 600;
-    margin: 40px 0;
+    margin-top: 20px;
     :hover {
       background-color: #343a3f;
       color: #fff;
@@ -31,7 +52,7 @@ const JoinFormStyled = styled.div`
 `;
 
 const InputWithLabel = ({ label, ...rest }) => (
-  <div>
+  <div className="join_field">
     <label>{label}</label>
     <input {...rest} />
   </div>
@@ -75,43 +96,41 @@ function JoinForm() {
 
   return (
     <JoinFormStyled>
-      <div>
-        <h2>회원가입</h2>
-        <form>
-          <InputWithLabel
-            label="Email: "
-            name="email"
-            type="email"
-            value={email}
-            onChange={handleEmail}
-          />
-          <InputWithLabel
-            label="Password: "
-            id="passwd"
-            type="password"
-            value={passwd}
-            onChange={handlePasswd}
-          />
-          <InputWithLabel
-            label="Confirm Password: "
-            id="confirm_passwd"
-            type="password"
-            value={confirm_passwd}
-            onChange={handleComfirmPasswd}
-          />
-          {error ? <div className="error">{error}</div> : <div></div>}
-          <InputWithLabel
-            label="Nickname: "
-            id="nickname"
-            type="text"
-            value={nickname}
-            onChange={handleNickname}
-          />
-          <button className="uploadButton" onClick={handleClick}>
-            Sign in
-          </button>
-        </form>
-      </div>
+      <h2>회원가입</h2>
+      <form>
+        <InputWithLabel
+          label="Email : "
+          name="email"
+          type="email"
+          value={email}
+          onChange={handleEmail}
+        />
+        <InputWithLabel
+          label="Password : "
+          id="passwd"
+          type="password"
+          value={passwd}
+          onChange={handlePasswd}
+        />
+        <InputWithLabel
+          label="Confirm Password : "
+          id="confirm_passwd"
+          type="password"
+          value={confirm_passwd}
+          onChange={handleComfirmPasswd}
+        />
+        {error ? <div className="error">{error}</div> : <div></div>}
+        <InputWithLabel
+          label="Nickname : "
+          id="nickname"
+          type="text"
+          value={nickname}
+          onChange={handleNickname}
+        />
+        <button className="uploadButton" onClick={handleClick}>
+          Sign in
+        </button>
+      </form>
     </JoinFormStyled>
   );
 }

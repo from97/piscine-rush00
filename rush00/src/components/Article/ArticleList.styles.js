@@ -58,7 +58,7 @@ ArticleListStyled.Pagination = styled.ul`
     cursor: pointer;
 
     :hover {
-      color: skyblue;
+      color: #036581;
       text-decoration: underline;
     }
   }
