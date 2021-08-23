@@ -7,6 +7,8 @@ const MainPageStyled = styled.div`
   margin: 60px auto;
   width: 50%;
   list-style: none;
+  letter-spacing: 0.05em;
+  color: #444;
   .about {
     text-align: center;
     margin-bottom: 80px;
@@ -30,6 +32,8 @@ const MainPageStyled = styled.div`
 `;
 
 MainPageStyled.Title = styled.h2`
+  font-weight: 500;
+  letter-spacing: 0.1em;
   margin: 40px 0 30px 0;
 `;
 

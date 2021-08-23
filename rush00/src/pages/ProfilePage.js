@@ -6,11 +6,11 @@ const ProfilePageStyled = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  letter-spacing: 0.05em;
   border: 1px dashed #ddd;
   border-radius: 20px;
   margin: 90px auto;
   padding: 30px 0 60px 0;
+  letter-spacing: 0.05em;
   h2 {
     font-size: 21px;
     font-weight: 600;
@@ -20,6 +20,7 @@ const ProfilePageStyled = styled.div`
   }
   li {
     line-height: 35px;
+    letter-spacing: 0.12em;
   }
   .username {
     color: #00779b;
