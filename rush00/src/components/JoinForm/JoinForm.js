@@ -3,13 +3,30 @@ import styled from "styled-components";
 
 const JoinFormStyled = styled.div`
   div {
-    text-align: center;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    text-align: left;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
-  button {
-    padding: 3px;
-    border: 1px solid black;
+  input {
+    width: 100%;
+    background-color: #f2f2f2;
+    margin: 1px 1px 1px 1px;
+  }
+  .error {
+    color: red;
+  }
+  .uploadButton {
+    width: 80px;
+    text-align: center;
+    border: 1px solid #343a3f;
+    border-radius: 20px;
+    padding: 6px 10px;
+    font-weight: 600;
+    margin: 40px 0;
+    :hover {
+      background-color: #343a3f;
+      color: #fff;
+    }
   }
 `;
 
@@ -17,6 +34,7 @@ function JoinForm() {
   const [email, setEmail] = useState("");
   const [passwd, setPasswd] = useState("");
   const [confirm_passwd, setConfirmPasswd] = useState("");
+  const [error, setError] = useState(null);
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -31,14 +49,22 @@ function JoinForm() {
   };
 
   const handleClick = (e) => {
-    e.preventDefault();
-    console.log(email, passwd, confirm_passwd);
+    if (passwd !== confirm_passwd) {
+      e.preventDefault();
+      setError("입력하신 비밀번호가 다릅니다.");
+      setPasswd("");
+      setConfirmPasswd("");
+    } else {
+      e.preventDefault();
+      setError(null);
+      console.log(email, passwd, confirm_passwd);
+    }
   };
 
   return (
     <JoinFormStyled>
       <div>
-        <h2>로그인</h2>
+        <h2>회원가입</h2>
         <form>
           <div>
             <label htmlFor="email">Email: </label>
@@ -55,9 +81,11 @@ function JoinForm() {
               id="passwd"
               type="password"
               value={passwd}
-              onChange={handlePasswd} />
+              onChange={handlePasswd}
+            />
           </div>
           <div>
+            {error ? <div className="error">{error}</div> : <div></div>}
             <label htmlFor="confirm_passwd">Confirm Password: </label>
             <input
               id="confirm_passwd"
@@ -66,7 +94,9 @@ function JoinForm() {
               onChange={handleComfirmPasswd}
             />
           </div>
-          <button onClick={handleClick}>Sign in</button>
+          <button className="uploadButton" onClick={handleClick}>
+            Sign in
+          </button>
         </form>
       </div>
     </JoinFormStyled>

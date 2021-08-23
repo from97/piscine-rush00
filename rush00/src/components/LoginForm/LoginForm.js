@@ -3,13 +3,30 @@ import styled from "styled-components";
 
 const LoginFormStyled = styled.div`
   div {
-    text-align: center;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    text-align: left;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
-  button {
-    padding: 3px;
-    border: 1px solid black;
+  input {
+    width: 100%;
+    background-color: #f2f2f2;
+    margin: 1px 1px 1px 1px;
+  }
+  .error {
+    color: red;
+  }
+  .uploadButton {
+    width: 80px;
+    text-align: center;
+    border: 1px solid #343a3f;
+    border-radius: 20px;
+    padding: 6px 10px;
+    font-weight: 600;
+    margin: 40px 0;
+    :hover {
+      background-color: #343a3f;
+      color: #fff;
+    }
   }
 `;
 
@@ -53,7 +70,9 @@ function LoginForm() {
               onChange={handlePasswd}
             />
           </div>
-          <button onClick={handleClick}>Log in</button>
+          <button className="uploadButton" onClick={handleClick}>
+            Log in
+          </button>
         </form>
       </div>
     </LoginFormStyled>
