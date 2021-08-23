@@ -42,17 +42,27 @@ function JoinForm() {
         <form>
           <div>
             <label htmlFor="email">Email: </label>
-            <input id="email" type="email" onChange={handleEmail} />
+            <input
+              id="email"
+              type="email"
+              value={email}
+              onChange={handleEmail}
+            />
           </div>
           <div>
             <label htmlFor="passwd">Password: </label>
-            <input id="passwd" type="password" onChange={handlePasswd} />
+            <input
+              id="passwd"
+              type="password"
+              value={passwd}
+              onChange={handlePasswd} />
           </div>
           <div>
             <label htmlFor="confirm_passwd">Confirm Password: </label>
             <input
               id="confirm_passwd"
               type="password"
+              value={confirm_passwd}
               onChange={handleComfirmPasswd}
             />
           </div>
