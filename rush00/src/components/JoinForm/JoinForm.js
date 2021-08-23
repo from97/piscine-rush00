@@ -30,10 +30,18 @@ const JoinFormStyled = styled.div`
   }
 `;
 
+const InputWithLabel = ({ label, ...rest }) => (
+  <div>
+    <label>{label}</label>
+    <input {...rest} />
+  </div>
+);
+
 function JoinForm() {
   const [email, setEmail] = useState("");
   const [passwd, setPasswd] = useState("");
   const [confirm_passwd, setConfirmPasswd] = useState("");
+  const [nickname, setNickname] = useState("");
   const [error, setError] = useState(null);
 
   const handleEmail = (e) => {
@@ -48,6 +56,10 @@ function JoinForm() {
     setConfirmPasswd(e.target.value);
   };
 
+  const handleNickname = (e) => {
+    setNickname(e.target.value);
+  };
+
   const handleClick = (e) => {
     if (passwd !== confirm_passwd) {
       e.preventDefault();
@@ -57,7 +69,7 @@ function JoinForm() {
     } else {
       e.preventDefault();
       setError(null);
-      console.log(email, passwd, confirm_passwd);
+      console.log(email, passwd, confirm_passwd, nickname);
     }
   };
 
@@ -66,34 +78,35 @@ function JoinForm() {
       <div>
         <h2>회원가입</h2>
         <form>
-          <div>
-            <label htmlFor="email">Email: </label>
-            <input
-              id="email"
-              type="email"
-              value={email}
-              onChange={handleEmail}
-            />
-          </div>
-          <div>
-            <label htmlFor="passwd">Password: </label>
-            <input
-              id="passwd"
-              type="password"
-              value={passwd}
-              onChange={handlePasswd}
-            />
-          </div>
-          <div>
-            {error ? <div className="error">{error}</div> : <div></div>}
-            <label htmlFor="confirm_passwd">Confirm Password: </label>
-            <input
-              id="confirm_passwd"
-              type="password"
-              value={confirm_passwd}
-              onChange={handleComfirmPasswd}
-            />
-          </div>
+          <InputWithLabel
+            label="Email: "
+            name="email"
+            type="email"
+            value={email}
+            onChange={handleEmail}
+          />
+          <InputWithLabel
+            label="Password: "
+            id="passwd"
+            type="password"
+            value={passwd}
+            onChange={handlePasswd}
+          />
+          <InputWithLabel
+            label="Confirm Password: "
+            id="confirm_passwd"
+            type="password"
+            value={confirm_passwd}
+            onChange={handleComfirmPasswd}
+          />
+          {error ? <div className="error">{error}</div> : <div></div>}
+          <InputWithLabel
+            label="Nickname: "
+            id="nickname"
+            type="text"
+            value={nickname}
+            onChange={handleNickname}
+          />
           <button className="uploadButton" onClick={handleClick}>
             Sign in
           </button>
