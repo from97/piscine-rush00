@@ -1,7 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
+import styled from "styled-components";
+import JoinForm from "../components/JoinForm/JoinForm";
+import LoginForm from "../components/LoginForm/LoginForm";
+
+const LoginPageStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h2 {
+    font-size: 21px;
+    font-weight: 600;
+    text-align: left;
+  }
+
+  span {
+    color: #1996fc;
+    cursor: pointer;
+    :hover {
+      text-decoration: underline;
+    }
+  }
+`;
 
 function LoginPage() {
-  return <div>로그인/회원가입 페이지</div>;
+  const [type, setType] = useState("login");
+
+  const handleClick = () => {
+    if (type === "login") setType("join");
+    else if (type === "join") setType("login");
+  };
+  return (
+    <LoginPageStyled>
+      {type === "login" ? (
+        <>
+          <LoginForm />
+          <div>
+            아직 회원이 아니신가요? <span onClick={handleClick}>회원가입</span>
+          </div>
+        </>
+      ) : (
+        <>
+          <JoinForm />
+          <div>
+            계정이 이미 있으신가요? <span onClick={handleClick}>로그인</span>
+          </div>
+        </>
+      )}
+    </LoginPageStyled>
+  );
 }
 
 export default LoginPage;

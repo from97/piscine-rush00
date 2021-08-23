@@ -30,10 +30,14 @@ function BoardPage() {
     setValue(value);
   };
 
+  const handleClick = () => {
+    console.log(value);
+  };
+
   return (
     <BoardStyled>
       <SimpleMde value={value} onChange={onChange} />
-      <button type="button" className="uploadButton">
+      <button type="button" className="uploadButton" onClick={handleClick}>
         업로드
       </button>
     </BoardStyled>
