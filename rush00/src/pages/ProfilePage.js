@@ -8,6 +8,7 @@ const ProfilePageStyled = styled.div`
   align-items: center;
   letter-spacing: 0.05em;
   border: 1px dashed #ddd;
+  border-radius: 20px;
   margin: 90px auto;
   padding: 30px 0 60px 0;
   h2 {
