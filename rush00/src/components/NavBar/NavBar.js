@@ -20,16 +20,16 @@ function NavBar() {
         <Link to="/profile">PROFILE</Link>
       </NavBarStyled.LinkWrapper>
       <NavBarStyled.LinkWrapper
-        onClick={() => setMode("login")}
-        isActive={mode === "login"}
-      >
-        <Link to="/login">LOGIN</Link>
-      </NavBarStyled.LinkWrapper>
-      <NavBarStyled.LinkWrapper
         onClick={() => setMode("board")}
         isActive={mode === "board"}
       >
         <Link to="/board">BOARD</Link>
+      </NavBarStyled.LinkWrapper>
+      <NavBarStyled.LinkWrapper
+        onClick={() => setMode("login")}
+        isActive={mode === "login"}
+      >
+        <Link to="/login">LOGIN</Link>
       </NavBarStyled.LinkWrapper>
     </NavBarStyled>
   );
