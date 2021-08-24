@@ -122,7 +122,7 @@ const jwtGuards = async (request, response, next) => {
       expires: new Date(
         Date.now() + 1000 * 60 * process.env.JWT_TOKEN_COOKIE_EXPIRED
       ),
-    }); // 쿠키가 안 바뀜
+    });
     request.cookies.token = tokenNew;
     request.user = user.dataValues;
     next();
