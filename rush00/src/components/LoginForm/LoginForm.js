@@ -73,9 +73,9 @@ function LoginForm() {
         email: email,
         password: passwd,
       })
-      .then((response) => {
+      .then(async (response) => {
         console.log("res: ", response);
-        actions(email);
+        await actions(email);
         alert(`${state} 님 안녕하세요 :)`);
       })
       .catch((e) => alert(e));
