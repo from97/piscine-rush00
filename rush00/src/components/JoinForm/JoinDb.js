@@ -1,14 +1,14 @@
 import axios from "axios";
 
-const JoinDb = (props) => {
+const JoinDb = async (props) => {
   const [email, passwd, nickname] = props;
-  let params = {
-    username: nickname,
-    email: email,
-    password: passwd,
-  };
-  axios
-    .post("http://localhost:4242/auth/signup", JSON.stringify(params))
+  const params = new URLSearchParams([
+    ["username", nickname],
+    ["email", email],
+    ["password", passwd],
+  ]);
+  await axios
+    .post("http://localhost:4242/auth/signup", {}, { params })
     .then((response) => console.log("res: ", response))
     .catch((e) => console.log("err: ", e));
 };

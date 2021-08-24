@@ -92,7 +92,7 @@ function JoinForm() {
       e.preventDefault(e);
       setError(null);
       JoinDb([email, passwd, nickname]);
-      alert("환영합니다 :)");
+      // alert("환영합니다 :)");
       // window.location.replace("/");
     }
   };
