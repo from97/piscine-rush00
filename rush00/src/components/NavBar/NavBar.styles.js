@@ -10,6 +10,8 @@ const NavBarStyled = styled.nav`
   color: inherit;
 
   a {
+    display: inline-block;
+    padding: 10px 15px;
     :hover {
       color: #036581;
     }
@@ -17,9 +19,7 @@ const NavBarStyled = styled.nav`
 `;
 
 NavBarStyled.LinkWrapper = styled.div`
-  width: 70px;
   text-align: center;
-  padding: 10px 15px;
   background-color: ${({ isActive }) => (isActive ? "#cee9ff" : "#eee")};
   color: ${({ isActive }) => (isActive ? "#fff" : "#343a3f")};
 `;
