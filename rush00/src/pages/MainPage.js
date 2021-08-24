@@ -59,7 +59,11 @@ function MainPage() {
           2021 08 23 - 2021 08 24
         </p>
         <div className="contacts">
-          <a href="https://github.com/from97/piscine-rush00">
+          <a
+            href="https://github.com/from97/piscine-rush00"
+            target="_blank"
+            rel="noreferrer"
+          >
             <GithubIcon />
           </a>
           <a href="mailto:anstjs1104@gmail.com">
