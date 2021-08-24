@@ -3,10 +3,10 @@ const JoinDb = async (props) => {
   console.log(props);
   fetch("http://localhost:4242/auth/signup", {
     method: "POST",
-    headers: {
+    payload: {
       username: nickname,
-      password: passwd,
       email: email,
+      password: passwd,
     },
   })
     .then((response) => console.log(response))

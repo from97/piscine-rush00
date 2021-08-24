@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import LoginDb from "./LoginDb";
 import styled from "styled-components";
 
 const LoginFormStyled = styled.div`
@@ -65,7 +66,8 @@ function LoginForm() {
 
   const handleClick = (e) => {
     e.preventDefault();
-    console.log(email, passwd);
+    LoginDb([email, passwd]);
+    // window.location.replace("/");
   };
 
   return (
