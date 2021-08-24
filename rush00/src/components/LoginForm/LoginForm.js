@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import { UserAuthenticated } from "../../App";
+import { SetUser, UserAuthenticated } from "../../App";
 
 const LoginFormStyled = styled.div`
   display: flex;
@@ -54,7 +54,8 @@ const LoginFormStyled = styled.div`
 `;
 
 function LoginForm() {
-  const [state, actions] = useContext(UserAuthenticated);
+  const state = useContext(UserAuthenticated);
+  const setState = useContext(SetUser);
   const [email, setEmail] = useState("");
   const [passwd, setPasswd] = useState("");
 
@@ -75,7 +76,7 @@ function LoginForm() {
       })
       .then(async (response) => {
         console.log("res: ", response);
-        await actions(email);
+        setState(email);
         alert(`${state} 님 안녕하세요 :)`);
       })
       .catch((e) => alert(e));

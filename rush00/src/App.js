@@ -42,6 +42,7 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 export const UserAuthenticated = createContext(null);
+export const SetUser = createContext(() => {});
 
 export function App() {
   const [email, setEmail] = useState(null);
@@ -50,18 +51,20 @@ export function App() {
   return (
     <div className="App">
       <BrowserRouter basename="piscine-rush00">
-        <UserAuthenticated.Provider value={[email, setEmail]}>
-          <header>
-            <Link to="/" onClick={() => setMode("home")}>
-              <h1>Markdown Board</h1>
-            </Link>
-          </header>
-          <NavBar mode={mode} setMode={setMode} />
-          <Route path="/" exact={true} component={MainPage} />
-          <Route path="/profile" component={ProfilePage} />
-          <Route path="/login" component={LoginPage} />
-          <Route path="/logout" component={LogoutPage} />
-          <Route path="/board" component={BoardPage} />
+        <UserAuthenticated.Provider value={email}>
+          <SetUser.Provider value={setEmail}>
+            <header>
+              <Link to="/" onClick={() => setMode("home")}>
+                <h1>Markdown Board</h1>
+              </Link>
+            </header>
+            <NavBar mode={mode} setMode={setMode} />
+            <Route path="/" exact={true} component={MainPage} />
+            <Route path="/profile" component={ProfilePage} />
+            <Route path="/login" component={LoginPage} />
+            <Route path="/logout" component={LogoutPage} />
+            <Route path="/board" component={BoardPage} />
+          </SetUser.Provider>
         </UserAuthenticated.Provider>
       </BrowserRouter>
       <GlobalStyle />
