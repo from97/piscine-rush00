@@ -1,5 +1,6 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
+const cors = require("cors");
 const dotenv = require("dotenv");
 const auth = require("./auth/controller.js");
 const board = require("./board/controller.js");
@@ -11,6 +12,12 @@ dotenv.config();
 sequelize.sync();
 
 const app = express();
+app.use(
+  cors({
+    origin: process.env.FRONT_CROSS_ORIGIN,
+    methods: ["GET", "POST", "PATCH", "DELETE"],
+  })
+);
 app.use(express.json());
 app.use(cookieParser());
 app.use(process.env.ENDPOINT_AUTH, auth);
