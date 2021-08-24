@@ -68,11 +68,11 @@ const tokenToUser = (token) => {
 const jwtGuards = async (request, response, next) => {
   response.setHeader("Content-Type", "application/json; charset=utf-8");
   if (!request.cookies.token) {
-    response.status(200).send(verify.error(10, "cookie is undefined"));
+    response.status(400).send(verify.error(10, "cookie is undefined"));
     return;
   }
   if (isExpiredToken(request.cookies.token)) {
-    response.status(200).send(verify.error(11, "expired token"));
+    response.status(400).send(verify.error(11, "expired token"));
     return;
   }
   var c;
@@ -91,7 +91,7 @@ const jwtGuards = async (request, response, next) => {
       jwt.verify(user.dataValues.refreshToken, process.env.JWT_SECRET_KEY);
     } catch (e) {
       console.log(e);
-      response.status(200).send(verify.error(15, "login is request"));
+      response.status(401).send(verify.error(15, "login is request"));
       return;
     }
     var tokenNew = jwt.sign(
@@ -114,7 +114,7 @@ const jwtGuards = async (request, response, next) => {
         }
       );
     } catch (e) {
-      response.status(200).send(verify.error(5, "query error occured"));
+      response.status(500).send(verify.error(5, "query error occured"));
       console.log(e);
     }
     console.log(`----------------- ${tokenNew}`);
@@ -128,14 +128,14 @@ const jwtGuards = async (request, response, next) => {
     next();
     return;
   }
-  response.status(200).send(verify.error(10, "bad request"));
+  response.status(400).send(verify.error(10, "bad request"));
   return;
 };
 
 const signUp = async (request, response) => {
   response.setHeader("Content-Type", "application/json; charset=utf-8");
   if (!request.body.username || !request.body.email || !request.body.password) {
-    response.status(200).send(verify.error(1, "field is undefined"));
+    response.status(400).send(verify.error(1, "field is undefined"));
     return;
   }
   if (
@@ -143,15 +143,15 @@ const signUp = async (request, response) => {
     !verify.password(request.body.password) ||
     !verify.email(request.body.email)
   ) {
-    response.status(200).send(verify.error(2, "field is invalid"));
+    response.status(400).send(verify.error(2, "field is invalid"));
     return;
   }
   if (await User.findOne({ where: { username: request.body.username } })) {
-    response.status(200).send(verify.error(3, "username already exist"));
+    response.status(409).send(verify.error(3, "username already exist"));
     return;
   }
   if (await User.findOne({ where: { email: request.body.email } })) {
-    response.status(200).send(verify.error(4, "email already exist"));
+    response.status(409).send(verify.error(4, "email already exist"));
     return;
   }
   try {
@@ -168,7 +168,7 @@ const signUp = async (request, response) => {
     );
   } catch (e) {
     console.log(e);
-    response.status(200).send(verify.error(5, "query error occured"));
+    response.status(500).send(verify.error(5, "query error occured"));
   }
 };
 
@@ -176,7 +176,7 @@ const signIn = async (request, response) => {
   response.setHeader("Content-Type", "application/json; charset=utf-8");
   expiredTokenRefresh();
   if (!request.body.email || !request.body.password) {
-    response.status(200).send(verify.error(1, "field is undefined"));
+    response.status(400).send(verify.error(1, "field is undefined"));
     return;
   }
   var user = await User.findOne({ where: { email: request.body.email } });
@@ -184,7 +184,7 @@ const signIn = async (request, response) => {
     !user ||
     !bcrypt.compareSync(request.body.password, user.dataValues.password)
   ) {
-    response.status(200).send(verify.error(6, "incorrect name or password"));
+    response.status(400).send(verify.error(6, "incorrect name or password"));
     return;
   }
   if (user.dataValues.token) {
@@ -234,7 +234,7 @@ const signOut = async (request, response) => {
   response.setHeader("Content-Type", "application/json; charset=utf-8");
   expiredTokenRefresh();
   if (!request.cookies.token) {
-    response.status(200).send(verify.error(10, "cookie is undefined"));
+    response.status(400).send(verify.error(10, "cookie is undefined"));
     return;
   }
   try {
@@ -260,7 +260,7 @@ const signOut = async (request, response) => {
     );
   } catch (e) {
     console.log(e);
-    response.status(200).send(verify.error(10, "bad request"));
+    response.status(400).send(verify.error(10, "bad request"));
   }
 };
 

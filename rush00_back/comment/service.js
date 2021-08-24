@@ -4,7 +4,7 @@ const { verify } = require("./../auth/service.js");
 const getComments = async (request, response) => {
   const postId = parseInt(request.params.id);
   if (isNaN(postId)) {
-    response.status(200).send(verify.error(10, "bad request"));
+    response.status(400).send(verify.error(10, "bad request"));
     return;
   }
   try {
@@ -27,18 +27,18 @@ const getComments = async (request, response) => {
     response.status(200).send(JSON.stringify(commentList));
   } catch (e) {
     console.log(e);
-    response.status(200).send(verify.error(5, "query error occured"));
+    response.status(500).send(verify.error(5, "query error occured"));
   }
 };
 
 const newComment = async (request, response) => {
   const postId = parseInt(request.params.id);
   if (isNaN(postId)) {
-    response.status(200).send(verify.error(10, "bad request"));
+    response.status(400).send(verify.error(10, "bad request"));
     return;
   }
   if (!request.body.content) {
-    response.status(200).send(verify.error(1, "field is undefined"));
+    response.status(400).send(verify.error(1, "field is undefined"));
     return;
   }
   var post;
@@ -49,7 +49,7 @@ const newComment = async (request, response) => {
       },
     });
     if (!post) {
-      response.status(200).send(verify.error(10, "not found"));
+      response.status(404).send(verify.error(10, "not found"));
       return;
     }
     await Comment.create({
@@ -64,18 +64,18 @@ const newComment = async (request, response) => {
     );
   } catch (e) {
     console.log(e);
-    response.status(200).send(verify.error(5, "query error occured"));
+    response.status(500).send(verify.error(5, "query error occured"));
   }
 };
 
 const updateComment = async (request, response) => {
   const commentId = parseInt(request.params.commentId);
   if (isNaN(commentId)) {
-    response.status(200).send(verify.error(10, "bad request"));
+    response.status(400).send(verify.error(10, "bad request"));
     return;
   }
   if (!request.body.content) {
-    response.status(200).send(verify.error(1, "field is undefined"));
+    response.status(400).send(verify.error(1, "field is undefined"));
     return;
   }
   var comment;
@@ -86,11 +86,11 @@ const updateComment = async (request, response) => {
       },
     });
     if (!comment) {
-      response.status(200).send(verify.error(10, "not found"));
+      response.status(404).send(verify.error(10, "not found"));
       return;
     }
     if (request.user.username !== comment.dataValues.author) {
-      response.status(200).send(verify.error(13, "unauthorized request"));
+      response.status(401).send(verify.error(13, "unauthorized request"));
       return;
     }
     await Comment.update(
@@ -104,7 +104,7 @@ const updateComment = async (request, response) => {
     );
   } catch (e) {
     console.log(e);
-    response.status(200).send(verify.error(5, "query error occured"));
+    response.status(500).send(verify.error(5, "query error occured"));
     return;
   }
   response.status(200).send(
@@ -117,7 +117,7 @@ const updateComment = async (request, response) => {
 const deleteComment = async (request, response) => {
   const commentId = parseInt(request.params.commentId);
   if (isNaN(commentId)) {
-    response.status(200).send(verify.error(10, "bad request"));
+    response.status(400).send(verify.error(10, "bad request"));
     return;
   }
   var comment;
@@ -128,11 +128,11 @@ const deleteComment = async (request, response) => {
       },
     });
     if (!comment) {
-      response.status(200).send(verify.error(10, "not found"));
+      response.status(404).send(verify.error(10, "not found"));
       return;
     }
     if (request.user.username !== comment.dataValues.author) {
-      response.status(200).send(verify.error(13, "unauthorized request"));
+      response.status(401).send(verify.error(13, "unauthorized request"));
       return;
     }
     await Comment.destroy({
@@ -140,7 +140,7 @@ const deleteComment = async (request, response) => {
     });
   } catch (e) {
     console.log(e);
-    response.status(200).send(verify.error(5, "query error occured"));
+    response.status(500).send(verify.error(5, "query error occured"));
     return;
   }
   response.status(200).send(
