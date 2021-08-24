@@ -43,6 +43,5 @@
     "eslint-plugin-prettier": "^3.4.1",
     "prettier": "^2.3.2"
   },
-  "proxy": "http://localhost:4242",
   "homepage": "https://from97.github.io/piscine-rush00/"
 }
