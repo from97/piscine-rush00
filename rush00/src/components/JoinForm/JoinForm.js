@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import JoinDb from "./JoinDb";
 
 const JoinFormStyled = styled.div`
   display: flex;
@@ -88,9 +89,11 @@ function JoinForm() {
       setPasswd("");
       setConfirmPasswd("");
     } else {
-      e.preventDefault();
+      e.preventDefault(e);
       setError(null);
-      console.log(email, passwd, confirm_passwd, nickname);
+      JoinDb([email, passwd, nickname]);
+      alert("환영합니다 :)");
+      // window.location.replace("/");
     }
   };
 
@@ -102,21 +105,18 @@ function JoinForm() {
           label="Email : "
           name="email"
           type="email"
-          value={email}
           onChange={handleEmail}
         />
         <InputWithLabel
           label="Password : "
           id="passwd"
           type="password"
-          value={passwd}
           onChange={handlePasswd}
         />
         <InputWithLabel
           label="Confirm Password : "
           id="confirm_passwd"
           type="password"
-          value={confirm_passwd}
           onChange={handleComfirmPasswd}
         />
         {error ? <div className="error">{error}</div> : <div></div>}
@@ -124,7 +124,6 @@ function JoinForm() {
           label="Nickname : "
           id="nickname"
           type="text"
-          value={nickname}
           onChange={handleNickname}
         />
         <button className="uploadButton" onClick={handleClick}>
