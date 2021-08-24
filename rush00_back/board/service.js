@@ -5,7 +5,7 @@ const getPostList = async (request, response) => {
   response.setHeader("Content-Type", "application/json; charset=utf-8");
   const idx = parseInt(request.query.idx);
   if (isNaN(idx) || idx < 1) {
-    response.status(200).send(verify.error(10, "bad request"));
+    response.status(400).send(verify.error(10, "bad request"));
     return;
   }
   try {
@@ -29,14 +29,14 @@ const getPostList = async (request, response) => {
       })
     );
   } catch (e) {
-    response.status(200).send(verify.error(5, "query error occured"));
+    response.status(500).send(verify.error(5, "query error occured"));
   }
 };
 
 const newPost = async (request, response) => {
   response.setHeader("Content-Type", "application/json; charset=utf-8");
   if (!request.body.title || !request.body.content) {
-    response.status(200).send(verify.error(1, "field is undefined"));
+    response.status(400).send(verify.error(1, "field is undefined"));
     return;
   }
   try {
@@ -52,14 +52,14 @@ const newPost = async (request, response) => {
     );
   } catch (e) {
     console.log(e);
-    response.status(200).send(verify.error(5, "query error occured"));
+    response.status(500).send(verify.error(5, "query error occured"));
   }
 };
 
 const getPost = async (request, response) => {
   const postId = parseInt(request.params.id);
   if (isNaN(postId)) {
-    response.status(200).send(verify.error(10, "bad request"));
+    response.status(400).send(verify.error(10, "bad request"));
     return;
   }
   var post;
@@ -70,12 +70,12 @@ const getPost = async (request, response) => {
       },
     });
     if (!post) {
-      response.status(200).send(verify.error(10, "not found"));
+      response.status(404).send(verify.error(10, "not found"));
       return;
     }
   } catch (e) {
     console.log(e);
-    response.status(200).send(verify.error(5, "query error occured"));
+    response.status(500).send(verify.error(5, "query error occured"));
     return;
   }
   response.status(200).send(JSON.stringify(post.dataValues));
@@ -84,11 +84,11 @@ const getPost = async (request, response) => {
 const updatePost = async (request, response) => {
   const postId = parseInt(request.params.id);
   if (isNaN(postId)) {
-    response.status(200).send(verify.error(10, "bad request"));
+    response.status(400).send(verify.error(10, "bad request"));
     return;
   }
   if (!request.body.title || !request.body.content) {
-    response.status(200).send(verify.error(1, "field is undefined"));
+    response.status(400).send(verify.error(1, "field is undefined"));
     return;
   }
   var post;
@@ -99,16 +99,16 @@ const updatePost = async (request, response) => {
       },
     });
     if (!post) {
-      response.status(200).send(verify.error(10, "not found"));
+      response.status(404).send(verify.error(10, "not found"));
       return;
     }
   } catch (e) {
     console.log(e);
-    response.status(200).send(verify.error(5, "query error occured"));
+    response.status(500).send(verify.error(5, "query error occured"));
     return;
   }
   if (request.user.username !== post.dataValues.author) {
-    response.status(200).send(verify.error(13, "unauthorized request"));
+    response.status(401).send(verify.error(13, "unauthorized request"));
     return;
   }
   await Board.update(
@@ -131,7 +131,7 @@ const updatePost = async (request, response) => {
 const deletePost = async (request, response) => {
   const postId = parseInt(request.params.id);
   if (isNaN(postId)) {
-    response.status(200).send(verify.error(10, "bad request"));
+    response.status(400).send(verify.error(10, "bad request"));
     return;
   }
   var post;
@@ -142,11 +142,11 @@ const deletePost = async (request, response) => {
       },
     });
     if (!post) {
-      response.status(200).send(verify.error(10, "not found"));
+      response.status(404).send(verify.error(10, "not found"));
       return;
     }
     if (request.user.username !== post.dataValues.author) {
-      response.status(200).send(verify.error(13, "unauthorized request"));
+      response.status(401).send(verify.error(13, "unauthorized request"));
       return;
     }
     await Board.destroy({
@@ -154,7 +154,7 @@ const deletePost = async (request, response) => {
     });
   } catch (e) {
     console.log(e);
-    response.status(200).send(verify.error(5, "query error occured"));
+    response.status(500).send(verify.error(5, "query error occured"));
     return;
   }
   response.status(200).send(
