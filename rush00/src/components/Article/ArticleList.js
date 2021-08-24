@@ -8,7 +8,7 @@ function ArticleList({ handleClick }) {
   useEffect(() => {
     const fetchList = async () => {
       try {
-        const response = await axios.get("/board");
+        const response = await axios.get("http://localhost:4242/board");
         console.log("list", response);
       } catch (e) {
         console.log(e);
