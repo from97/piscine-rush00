@@ -20,6 +20,7 @@ const getPostList = async (request, response) => {
         author: post.dataValues.author,
         title: post.dataValues.title,
         createdAt: post.dataValues.createdAt,
+        updatedAt: post.dataValues.updatedAt,
       });
     });
     response.status(200).send(
