@@ -3,8 +3,16 @@ const { verify } = require("./../auth/service.js");
 
 const getPostList = async (request, response) => {
   response.setHeader("Content-Type", "application/json; charset=utf-8");
+  const idx = parseInt(request.query.idx);
+  if (isNaN(idx) || idx < 1) {
+    response.status(200).send(verify.error(10, "bad request"));
+    return;
+  }
   try {
-    const posts = await Board.findAll();
+    const posts = await Board.findAll({
+      offset: idx - 1,
+      limit: 5,
+    });
     const titleList = [];
     posts.forEach((post) => {
       titleList.push({
@@ -14,7 +22,12 @@ const getPostList = async (request, response) => {
         createdAt: post.dataValues.createdAt,
       });
     });
-    response.status(200).send(JSON.stringify(titleList));
+    response.status(200).send(
+      JSON.stringify({
+        rows: await Board.count(),
+        posts: titleList,
+      })
+    );
   } catch (e) {
     response.status(200).send(verify.error(5, "query error occured"));
   }
