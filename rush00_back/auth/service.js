@@ -117,6 +117,7 @@ const jwtGuards = async (request, response, next) => {
       response.status(200).send(verify.error(5, "query error occured"));
       console.log(e);
     }
+    console.log(`----------------- ${tokenNew}`);
     response.cookie("token", tokenNew, {
       expires: new Date(
         Date.now() + 1000 * 60 * process.env.JWT_TOKEN_COOKIE_EXPIRED
