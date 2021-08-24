@@ -5,7 +5,7 @@ import { UserAuthenticated } from "../../App";
 
 function NavBar() {
   const [mode, setMode] = useState("home");
-  const [state, actions] = useContext(UserAuthenticated);
+  const state = useContext(UserAuthenticated);
 
   return (
     <NavBarStyled>

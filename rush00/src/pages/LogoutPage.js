@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { UserAuthenticated } from "../App";
+import { SetUser } from "../App";
 
 const LogoutPageStyled = styled.div`
   width: 500px;
@@ -23,19 +23,18 @@ const LogoutPageStyled = styled.div`
 `;
 
 function LogoutPage() {
-  const [state, actions] = useContext(UserAuthenticated);
+  const setState = useContext(SetUser);
   const handleLogout = async () => {
     await axios
       .get("http://localhost:4242/auth/signout")
       .then(() => {
         alert("로그아웃되셨습니다.");
+        setState(null);
         window.location.replace("/");
       })
       .catch((e) => alert(e));
   };
 
-  actions.setNickname(null);
-  actions.setEmail(null);
   handleLogout();
 
   return (

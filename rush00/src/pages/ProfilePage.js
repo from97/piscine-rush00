@@ -35,7 +35,7 @@ const ProfilePageStyled = styled.div`
 `;
 
 function ProfilePage() {
-  const [state, actions] = useContext(UserAuthenticated);
+  const state = useContext(UserAuthenticated);
 
   if (!state) window.location.replace("/");
 
