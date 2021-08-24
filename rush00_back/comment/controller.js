@@ -7,15 +7,15 @@ router.get("/board/:id/comment", (request, response) => {
 });
 
 router.post("/board/:id/comment", (request, response) => {
-  console.log(request.params);
+  commentService.newComment(request, response);
 });
 
 router.delete("/board/:id/comment/:commentId", (request, response) => {
-  console.log(request.params);
+  commentService.deleteComment(request, response);
 });
 
 router.patch("/board/:id/comment/:commentId", (request, response) => {
-  console.log(request.params);
+  commentService.updateComment(request, response);
 });
 
 module.exports = router;
