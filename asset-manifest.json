@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/piscine-rush00/static/css/main.afd7172b.chunk.css",
+    "main.js": "/piscine-rush00/static/js/main.8530a0b0.chunk.js",
+    "main.js.map": "/piscine-rush00/static/js/main.8530a0b0.chunk.js.map",
+    "runtime-main.js": "/piscine-rush00/static/js/runtime-main.636fa610.js",
+    "runtime-main.js.map": "/piscine-rush00/static/js/runtime-main.636fa610.js.map",
+    "static/css/2.292d9e26.chunk.css": "/piscine-rush00/static/css/2.292d9e26.chunk.css",
+    "static/js/2.353a2f0c.chunk.js": "/piscine-rush00/static/js/2.353a2f0c.chunk.js",
+    "static/js/2.353a2f0c.chunk.js.map": "/piscine-rush00/static/js/2.353a2f0c.chunk.js.map",
+    "index.html": "/piscine-rush00/index.html",
+    "static/css/2.292d9e26.chunk.css.map": "/piscine-rush00/static/css/2.292d9e26.chunk.css.map",
+    "static/css/main.afd7172b.chunk.css.map": "/piscine-rush00/static/css/main.afd7172b.chunk.css.map",
+    "static/js/2.353a2f0c.chunk.js.LICENSE.txt": "/piscine-rush00/static/js/2.353a2f0c.chunk.js.LICENSE.txt",
+    "static/media/icon-email.7237e68b.svg": "/piscine-rush00/static/media/icon-email.7237e68b.svg",
+    "static/media/icon-github.e2f07326.svg": "/piscine-rush00/static/media/icon-github.e2f07326.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.636fa610.js",
+    "static/css/2.292d9e26.chunk.css",
+    "static/js/2.353a2f0c.chunk.js",
+    "static/css/main.afd7172b.chunk.css",
+    "static/js/main.8530a0b0.chunk.js"
+  ]
+}
