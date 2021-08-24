@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import NavBarStyled from "./NavBar.styles";
 import { Link } from "react-router-dom";
 
-function NavBar() {
-  const [mode, setMode] = useState("home");
-
+function NavBar({ mode, setMode }) {
   return (
     <NavBarStyled>
       <NavBarStyled.LinkWrapper

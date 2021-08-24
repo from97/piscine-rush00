@@ -1,6 +1,6 @@
 import "./App.css";
 import React, { useState } from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Link } from "react-router-dom";
 import MainPage from "./pages/MainPage";
 import LoginPage from "./pages/LoginPage";
 import BoardPage from "./pages/BoardPage";
@@ -34,11 +34,15 @@ const GlobalStyle = createGlobalStyle`
     display: flex;
     justify-content: center;
     padding: 30px 0;
+    h1 {
+      cursor: pointer;
+    }
   }
 `;
 
 function App() {
   const [user, setUser] = useState(null);
+  const [mode, setMode] = useState("home");
   const authenticated = user != null;
 
   const handleLogin = (props) => {
@@ -53,9 +57,11 @@ function App() {
     <div className="App">
       <BrowserRouter basename="piscine-rush00">
         <header>
-          <h1>Markdown Board</h1>
+          <Link to="/" onClick={() => setMode("home")}>
+            <h1>Markdown Board</h1>
+          </Link>
         </header>
-        <NavBar />
+        <NavBar mode={mode} setMode={setMode} />
         <Route path="/" exact={true} component={MainPage} />
         <Route path="/profile" component={ProfilePage} />
         <Route path="/login" render={() => <LoginPage login={handleLogin} />} />
