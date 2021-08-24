@@ -1,8 +1,9 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { createContext, useState } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import MainPage from "./pages/MainPage";
 import LoginPage from "./pages/LoginPage";
+import LogoutPage from "./pages/LogoutPage";
 import BoardPage from "./pages/BoardPage";
 import ProfilePage from "./pages/ProfilePage";
 import NavBar from "./components/NavBar/NavBar";
@@ -37,33 +38,42 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-function App() {
-  const [user, setUser] = useState(null);
-  const authenticated = user != null;
+export const UserAuthenticated = createContext({
+  state: {
+    nickname: null,
+    email: null,
+  },
+  actions: {
+    setNickname: () => {},
+    setEmail: () => {},
+  },
+});
 
-  const handleLogin = (props) => {
-    setUser(props.email);
-  };
+export function App() {
+  const [nickname, setNickname] = useState(null);
+  const [email, setEmail] = useState(null);
 
-  const handleLogout = (props) => {
-    setUser(null);
+  const value = {
+    state: { nickname, email },
+    actions: { setNickname, setEmail },
   };
 
   return (
     <div className="App">
       <BrowserRouter basename="piscine-rush00">
-        <header>
-          <h1>Markdown Board</h1>
-        </header>
-        <NavBar />
-        <Route path="/" exact={true} component={MainPage} />
-        <Route path="/profile" component={ProfilePage} />
-        <Route path="/login" render={() => <LoginPage login={handleLogin} />} />
-        <Route path="/board" component={BoardPage} />
+        <UserAuthenticated.Provider value={[value.state, value.actions]}>
+          <header>
+            <h1>Markdown Board</h1>
+          </header>
+          <NavBar />
+          <Route path="/" exact={true} component={MainPage} />
+          <Route path="/profile" component={ProfilePage} />
+          <Route path="/login" component={LoginPage} />
+          <Route path="/logout" component={LogoutPage} />
+          <Route path="/board" component={BoardPage} />
+        </UserAuthenticated.Provider>
       </BrowserRouter>
       <GlobalStyle />
     </div>
   );
 }
-
-export default App;

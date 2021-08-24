@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import LoginDb from "./LoginDb";
 import styled from "styled-components";
+import { UserAuthenticated } from "../../App";
 
 const LoginFormStyled = styled.div`
   display: flex;
@@ -52,10 +53,10 @@ const LoginFormStyled = styled.div`
   }
 `;
 
-function LoginForm(login) {
+function LoginForm() {
+  const [state, actions] = useContext(UserAuthenticated);
   const [email, setEmail] = useState("");
   const [passwd, setPasswd] = useState("");
-  console.log(login);
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -67,8 +68,8 @@ function LoginForm(login) {
 
   const handleClick = (e) => {
     e.preventDefault();
-    LoginDb([email, passwd]);
-    window.location.replace("/");
+    LoginDb([email, passwd, state, actions]);
+    // window.location.replace("/");
   };
 
   return (

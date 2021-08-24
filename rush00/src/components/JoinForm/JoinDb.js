@@ -17,7 +17,6 @@ const JoinDb = async (props) => {
     })
     .then((response) => {
       console.log("res: ", response);
-      alert(`${email} 님 회원가입을 축하드립니다 :)`);
     })
     .catch((e) => alert(e));
 };

@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
+import axios from "axios";
 import styled from "styled-components";
+import { UserAuthenticated } from "../App";
 
 const ProfilePageStyled = styled.div`
   width: 500px;
@@ -33,25 +35,34 @@ const ProfilePageStyled = styled.div`
 `;
 
 function ProfilePage() {
-  const email = "rush00@student.42seoul.kr";
-  const nickname = "rush00";
+  const [state, actions] = useContext(UserAuthenticated);
 
-  // const getUser = () => {
-  // };
+  if (state.email) window.location.replace("/");
+
+  const handleProfile = async () => {
+    await axios
+      .get("http://localhost:4242/profile")
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((e) => alert(e));
+  };
+
+  handleProfile();
 
   return (
     <ProfilePageStyled>
       <h2>
-        <span className="username">{nickname}</span>의 프로필
+        <span className="username">{state.nickname}</span>의 프로필
       </h2>
       <ul>
         <li key="nickname">
           <span className="profile_field">Nickname: </span>
-          {nickname}
+          {state.nickname}
         </li>
         <li key="email">
           <span className="profile_field">Email: </span>
-          {email}
+          {state.email}
         </li>
       </ul>
     </ProfilePageStyled>

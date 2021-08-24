@@ -26,7 +26,7 @@ const LoginPageStyled = styled.div`
   }
 `;
 
-function LoginPage() {
+function LoginPage(props) {
   const [type, setType] = useState("login");
 
   const handleClick = () => {
