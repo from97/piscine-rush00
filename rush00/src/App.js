@@ -33,6 +33,7 @@ const GlobalStyle = createGlobalStyle`
   header {
     display: flex;
     justify-content: center;
+    padding: 30px 0;
   }
 `;
 
