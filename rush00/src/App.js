@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { createContext, useState } from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import MainPage from "./pages/MainPage";
 import LoginPage from "./pages/LoginPage";
@@ -66,9 +66,9 @@ export function App() {
       <BrowserRouter basename="piscine-rush00">
         <UserAuthenticated.Provider value={[value.state, value.actions]}>
           <header>
-          <Link to="/" onClick={() => setMode("home")}>
-            <h1>Markdown Board</h1>
-          </Link>
+            <Link to="/" onClick={() => setMode("home")}>
+              <h1>Markdown Board</h1>
+            </Link>
           </header>
           <NavBar />
           <Route path="/" exact={true} component={MainPage} />
