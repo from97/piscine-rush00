@@ -55,6 +55,7 @@ export const UserAuthenticated = createContext({
 export function App() {
   const [nickname, setNickname] = useState(null);
   const [email, setEmail] = useState(null);
+  const [mode, setMode] = useState("home");
 
   const value = {
     state: { nickname, email },
@@ -70,7 +71,7 @@ export function App() {
               <h1>Markdown Board</h1>
             </Link>
           </header>
-          <NavBar />
+          <NavBar mode={mode} setMode={setMode} />
           <Route path="/" exact={true} component={MainPage} />
           <Route path="/profile" component={ProfilePage} />
           <Route path="/login" component={LoginPage} />
