@@ -2,8 +2,9 @@ import React, { useRef, useState } from "react";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import { Editor } from "@toast-ui/react-editor";
 import EditFormStyled from "./EditForm.styles";
+import axios from "axios";
 
-function EditForm() {
+function EditForm({ mode, handleClick }) {
   const [title, setTitle] = useState("");
   const editorRef = useRef();
 
@@ -11,11 +12,25 @@ function EditForm() {
     setTitle(e.target.value);
   };
 
-  const handleClick = () => {
+  const handleButtonClick = () => {
     const editor = editorRef.current.getInstance();
     console.log(title);
     console.log(editor.getMarkdown());
     console.log(editor.getHTML());
+    const fetchArticle = async () => {
+      try {
+        const response = await axios.post("http://localhost:4242/board", {
+          title: title,
+          content: editor.getMarkdown(),
+        });
+        console.log(response);
+      } catch (e) {
+        console.log(e);
+      }
+      console.log("called fetchArticle()");
+    };
+    fetchArticle();
+    handleClick();
   };
 
   return (
@@ -40,9 +55,9 @@ function EditForm() {
       <EditFormStyled.Button
         type="button"
         className="uploadButton"
-        onClick={handleClick}
+        onClick={handleButtonClick}
       >
-        업로드
+        {mode === "create" ? "작성 완료" : "수정 완료"}
       </EditFormStyled.Button>
     </EditFormStyled>
   );

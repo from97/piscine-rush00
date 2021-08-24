@@ -4,7 +4,7 @@ import ArticleListStyled from "./ArticleList.styles";
 import ReactPaginate from "react-paginate";
 import axios from "axios";
 
-function ArticleList({ handleClick }) {
+function ArticleList({ handleClick, handleItemClick }) {
   useEffect(() => {
     const fetchList = async () => {
       try {
@@ -36,11 +36,11 @@ function ArticleList({ handleClick }) {
         <span className="field_title">제목</span>
         <span className="field_author">작성자</span>
       </ArticleListStyled.Field>
-      <ArticleItem />
-      <ArticleItem />
-      <ArticleItem />
-      <ArticleItem />
-      <ArticleItem />
+      <ArticleItem handleClick={handleItemClick} />
+      <ArticleItem handleClick={handleItemClick} />
+      <ArticleItem handleClick={handleItemClick} />
+      <ArticleItem handleClick={handleItemClick} />
+      <ArticleItem handleClick={handleItemClick} />
       <ArticleListStyled.Pagination>
         <ReactPaginate
           previousLabel={"<"}

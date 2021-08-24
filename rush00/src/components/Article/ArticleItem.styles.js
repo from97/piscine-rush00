@@ -12,6 +12,9 @@ const ArticleItemStyled = styled.div`
     display: inline-block;
     width: 23px;
   }
+  .field_title {
+    cursor: pointer;
+  }
   .field_author {
     position: absolute;
     width: 42px;
