@@ -8,6 +8,7 @@ export const ArticleViewerStyled = styled.div`
 
 ArticleViewerStyled.Buttons = styled.div`
   display: flex;
+  margin-bottom: 50px;
   button {
     width: 80px;
     text-align: center;
@@ -15,7 +16,7 @@ ArticleViewerStyled.Buttons = styled.div`
     border-radius: 20px;
     padding: 6px 10px;
     font-weight: 600;
-    margin: 40px 15px 20px 15px;
+    margin: 40px 15px 0 15px;
     :hover {
       background-color: #343a3f;
       color: #fff;
@@ -28,7 +29,7 @@ export const ArticleWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   width: 80vw;
-  margin: 40px auto;
+  margin: 40px auto 0;
 `;
 
 export const Comments = styled.div``;
