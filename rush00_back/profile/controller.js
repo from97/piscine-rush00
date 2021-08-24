@@ -13,7 +13,7 @@ router.get(process.env.ENDPOINT_PROFILE_ID, async (request, response) => {
     );
     return;
   }
-  response.status(200).send(verify.error(12, "invalid request"));
+  response.status(400).send(verify.error(12, "invalid request"));
 });
 
 module.exports = router;
