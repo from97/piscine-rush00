@@ -37,7 +37,7 @@ const ProfilePageStyled = styled.div`
 function ProfilePage() {
   const [state, actions] = useContext(UserAuthenticated);
 
-  if (state.email) window.location.replace("/");
+  if (!state) window.location.replace("/");
 
   const handleProfile = async () => {
     await axios
@@ -52,7 +52,7 @@ function ProfilePage() {
 
   return (
     <ProfilePageStyled>
-      <h2>
+      {/* <h2>
         <span className="username">{state.nickname}</span>의 프로필
       </h2>
       <ul>
@@ -64,7 +64,7 @@ function ProfilePage() {
           <span className="profile_field">Email: </span>
           {state.email}
         </li>
-      </ul>
+      </ul> */}
     </ProfilePageStyled>
   );
 }

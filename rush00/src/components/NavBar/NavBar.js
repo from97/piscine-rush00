@@ -27,7 +27,7 @@ function NavBar() {
       >
         <Link to="/board">BOARD</Link>
       </NavBarStyled.LinkWrapper>
-      {!state.email ? (
+      {!state ? (
         <NavBarStyled.LinkWrapper
           onClick={() => setMode("login")}
           isActive={mode === "login"}

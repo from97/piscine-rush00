@@ -41,31 +41,16 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-export const UserAuthenticated = createContext({
-  state: {
-    nickname: null,
-    email: null,
-  },
-  actions: {
-    setNickname: () => {},
-    setEmail: () => {},
-  },
-});
+export const UserAuthenticated = createContext(null);
 
 export function App() {
-  const [nickname, setNickname] = useState(null);
   const [email, setEmail] = useState(null);
   const [mode, setMode] = useState("home");
-
-  const value = {
-    state: { nickname, email },
-    actions: { setNickname, setEmail },
-  };
 
   return (
     <div className="App">
       <BrowserRouter basename="piscine-rush00">
-        <UserAuthenticated.Provider value={[value.state, value.actions]}>
+        <UserAuthenticated.Provider value={[email, setEmail]}>
           <header>
             <Link to="/" onClick={() => setMode("home")}>
               <h1>Markdown Board</h1>

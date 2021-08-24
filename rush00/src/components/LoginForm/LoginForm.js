@@ -75,8 +75,8 @@ function LoginForm() {
       })
       .then((response) => {
         console.log("res: ", response);
-        actions.setEmail(email);
-        alert(`${email} 님 안녕하세요 :)`);
+        actions(email);
+        alert(`${state} 님 안녕하세요 :)`);
       })
       .catch((e) => alert(e));
     window.location.replace("/");
@@ -88,16 +88,11 @@ function LoginForm() {
       <form>
         <div className="login_field">
           <label htmlFor="email">Email : </label>
-          <input id="email" type="email" value={email} onChange={handleEmail} />
+          <input id="email" type="email" onChange={handleEmail} />
         </div>
         <div className="login_field">
           <label htmlFor="passwd">Password : </label>
-          <input
-            id="passwd"
-            type="password"
-            value={passwd}
-            onChange={handlePasswd}
-          />
+          <input id="passwd" type="password" onChange={handlePasswd} />
         </div>
         <button className="uploadButton" onClick={handleClick}>
           Log in
