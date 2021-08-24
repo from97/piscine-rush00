@@ -1,16 +1,16 @@
-const JoinDb = async (props) => {
+import axios from "axios";
+
+const JoinDb = (props) => {
   const [email, passwd, nickname] = props;
-  console.log(props);
-  fetch("http://localhost:4242/auth/signup", {
-    method: "POST",
-    payload: {
-      username: nickname,
-      email: email,
-      password: passwd,
-    },
-  })
-    .then((response) => console.log(response))
-    .catch((e) => console.log(e));
+  let params = {
+    username: nickname,
+    email: email,
+    password: passwd,
+  };
+  axios
+    .post("http://localhost:4242/auth/signup", JSON.stringify(params))
+    .then((response) => console.log("res: ", response))
+    .catch((e) => console.log("err: ", e));
 };
 
 export default JoinDb;
