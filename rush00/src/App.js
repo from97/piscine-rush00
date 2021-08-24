@@ -45,7 +45,6 @@ export const UserAuthenticated = createContext(null);
 export const SetUser = createContext(() => {});
 
 export function App() {
-  localStorage.clear();
   const [mode, setMode] = useState("home");
   const [email, setEmail] = useLocalStorage("email", null);
 

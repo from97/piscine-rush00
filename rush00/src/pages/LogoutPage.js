@@ -26,7 +26,7 @@ function LogoutPage() {
   const [user, setUser] = useLocalStorage("email", null);
   const handleLogout = async () => {
     await axios
-      .get("http://localhost:4242/auth/signout")
+      .get("http://localhost:4242/auth/signout", { withCredentials: true })
       .then(() => {
         alert("로그아웃되셨습니다.");
         setUser(null);

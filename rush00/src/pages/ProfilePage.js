@@ -41,7 +41,7 @@ function ProfilePage() {
 
   const handleProfile = async () => {
     await axios
-      .get("http://localhost:4242/profile")
+      .get("http://localhost:4242/profile", { withCredentials: true })
       .then((response) => {
         console.log(response);
       })

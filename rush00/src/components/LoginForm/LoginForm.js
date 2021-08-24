@@ -79,7 +79,7 @@ function LoginForm() {
         console.log(document.cookie);
       })
       .catch((e) => alert(e));
-    // window.location.replace("/");
+    window.location.replace("/");
   };
 
   return (
