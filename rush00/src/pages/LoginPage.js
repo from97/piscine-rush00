@@ -21,6 +21,9 @@ const LoginPageStyled = styled.div`
       text-decoration: underline;
     }
   }
+  .move {
+    margin-bottom: 30px;
+  }
 `;
 
 function LoginPage() {
@@ -36,14 +39,14 @@ function LoginPage() {
       {type === "login" ? (
         <>
           <LoginForm />
-          <div>
+          <div className="move">
             아직 회원이 아니신가요? <span onClick={handleClick}>회원가입</span>
           </div>
         </>
       ) : (
         <>
           <JoinForm />
-          <div>
+          <div className="move">
             계정이 이미 있으신가요? <span onClick={handleClick}>로그인</span>
           </div>
         </>
