@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import LoginDb from "./LoginDb";
+import axios from "axios";
 import styled from "styled-components";
 import { UserAuthenticated } from "../../App";
 
@@ -66,10 +66,20 @@ function LoginForm() {
     setPasswd(e.target.value);
   };
 
-  const handleClick = (e) => {
+  const handleClick = async (e) => {
     e.preventDefault();
-    LoginDb([email, passwd, state, actions]);
-    // window.location.replace("/");
+    await axios
+      .post("http://localhost:4242/auth/login", {
+        email: email,
+        password: passwd,
+      })
+      .then((response) => {
+        console.log("res: ", response);
+        actions.setEmail(email);
+        alert(`${email} 님 안녕하세요 :)`);
+      })
+      .catch((e) => alert(e));
+    window.location.replace("/");
   };
 
   return (
