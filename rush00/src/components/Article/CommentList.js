@@ -4,13 +4,15 @@ import CommentItem from "./CommentItem";
 
 const CommentListStyled = styled.div`
   width: 70vw;
-  margin-top: 40px;
+  margin-top: 35px;
   text-align: left;
 `;
 
 const CommentsWrapper = styled.div`
+  width: 95%;
   height: 100px;
   overflow-y: scroll;
+  overflow-x: hidden;
   box-sizing: border-box;
 `;
 

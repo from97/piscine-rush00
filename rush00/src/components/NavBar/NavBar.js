@@ -21,6 +21,12 @@ function NavBar() {
       >
         <Link to="/profile">PROFILE</Link>
       </NavBarStyled.LinkWrapper>
+      <NavBarStyled.LinkWrapper
+        onClick={() => setMode("board")}
+        isActive={mode === "board"}
+      >
+        <Link to="/board">BOARD</Link>
+      </NavBarStyled.LinkWrapper>
       {!state.email ? (
         <NavBarStyled.LinkWrapper
           onClick={() => setMode("login")}
@@ -36,12 +42,6 @@ function NavBar() {
           <Link to="/logout">LOGOUT</Link>
         </NavBarStyled.LinkWrapper>
       )}
-      <NavBarStyled.LinkWrapper
-        onClick={() => setMode("board")}
-        isActive={mode === "board"}
-      >
-        <Link to="/board">BOARD</Link>
-      </NavBarStyled.LinkWrapper>
     </NavBarStyled>
   );
 }

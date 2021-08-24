@@ -1,6 +1,6 @@
 import "./App.css";
-import React, { createContext, useState } from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import React, { useState } from "react";
+import { BrowserRouter, Route, Link } from "react-router-dom";
 import MainPage from "./pages/MainPage";
 import LoginPage from "./pages/LoginPage";
 import LogoutPage from "./pages/LogoutPage";
@@ -35,6 +35,9 @@ const GlobalStyle = createGlobalStyle`
     display: flex;
     justify-content: center;
     padding: 30px 0;
+    h1 {
+      cursor: pointer;
+    }
   }
 `;
 
@@ -63,7 +66,9 @@ export function App() {
       <BrowserRouter basename="piscine-rush00">
         <UserAuthenticated.Provider value={[value.state, value.actions]}>
           <header>
+          <Link to="/" onClick={() => setMode("home")}>
             <h1>Markdown Board</h1>
+          </Link>
           </header>
           <NavBar />
           <Route path="/" exact={true} component={MainPage} />

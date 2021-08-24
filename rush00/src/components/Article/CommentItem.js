@@ -19,7 +19,7 @@ CommentItemStyled.Buttons = styled.div`
   display: flex;
   position: absolute;
   top: 3px;
-  right: 5px;
+  right: 15px;
   button {
     color: #ccc;
     margin: 0 5px;

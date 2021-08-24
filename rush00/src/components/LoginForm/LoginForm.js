@@ -12,7 +12,7 @@ const LoginFormStyled = styled.div`
   }
   form {
     width: 320px;
-    height: 340px;
+    height: 290px;
     box-sizing: border-box;
     margin-bottom: 50px;
     display: flex;
@@ -45,7 +45,7 @@ const LoginFormStyled = styled.div`
     border-radius: 20px;
     padding: 6px 10px;
     font-weight: 600;
-    margin: 40px auto 120px;
+    margin: 40px auto 60px;
     :hover {
       background-color: #343a3f;
       color: #fff;
@@ -92,6 +92,7 @@ function LoginForm() {
         <button className="uploadButton" onClick={handleClick}>
           Log in
         </button>
+        <p>로그인 후에 서비스를 이용할 수 있습니다. </p>
       </form>
     </LoginFormStyled>
   );
