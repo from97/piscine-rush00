@@ -1,12 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ArticleItem from "./ArticleItem";
 import ArticleListStyled from "./ArticleList.styles";
 import ReactPaginate from "react-paginate";
+import axios from "axios";
 
 function ArticleList({ handleClick }) {
+  useEffect(() => {
+    const fetchList = async () => {
+      try {
+        const response = await axios.get("/board");
+        console.log("list", response);
+      } catch (e) {
+        console.log(e);
+      }
+      console.log("loaded list");
+    };
+    fetchList();
+  }, []);
+
   const handlePageChange = () => {
     console.log("page changed");
   };
+
   return (
     <ArticleListStyled>
       <button type="button" className="createButton" onClick={handleClick}>
