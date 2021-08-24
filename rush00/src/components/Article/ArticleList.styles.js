@@ -48,10 +48,11 @@ ArticleListStyled.Field = styled.div`
   }
 `;
 
-ArticleListStyled.Pagination = styled.ul`
-  display: flex;
-  list-style: none;
+ArticleListStyled.Pagination = styled.div`
   margin-top: 40px;
+  ul {
+    display: flex;
+  }
   li {
     width: 15px;
     margin-right: 10px;
