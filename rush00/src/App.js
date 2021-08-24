@@ -1,5 +1,5 @@
 import "./App.css";
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import MainPage from "./pages/MainPage";
 import LoginPage from "./pages/LoginPage";
@@ -38,6 +38,17 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
+  const [user, setUser] = useState(null);
+  const authenticated = user != null;
+
+  const handleLogin = (props) => {
+    setUser(props.email);
+  };
+
+  const handleLogout = (props) => {
+    setUser(null);
+  };
+
   return (
     <div className="App">
       <BrowserRouter basename="piscine-rush00">
@@ -47,7 +58,7 @@ function App() {
         <NavBar />
         <Route path="/" exact={true} component={MainPage} />
         <Route path="/profile" component={ProfilePage} />
-        <Route path="/login" component={LoginPage} />
+        <Route path="/login" render={() => <LoginPage login={handleLogin} />} />
         <Route path="/board" component={BoardPage} />
       </BrowserRouter>
       <GlobalStyle />

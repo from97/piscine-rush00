@@ -52,9 +52,10 @@ const LoginFormStyled = styled.div`
   }
 `;
 
-function LoginForm() {
+function LoginForm(login) {
   const [email, setEmail] = useState("");
   const [passwd, setPasswd] = useState("");
+  console.log(login);
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -67,7 +68,7 @@ function LoginForm() {
   const handleClick = (e) => {
     e.preventDefault();
     LoginDb([email, passwd]);
-    // window.location.replace("/");
+    window.location.replace("/");
   };
 
   return (
