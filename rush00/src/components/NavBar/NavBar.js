@@ -1,11 +1,11 @@
 import React, { useContext, useState } from "react";
 import NavBarStyled from "./NavBar.styles";
 import { Link } from "react-router-dom";
-import { UserAuthenticated } from "../../App";
+import { useLocalStorage, UserAuthenticated } from "../../App";
 
 function NavBar() {
   const [mode, setMode] = useState("home");
-  const state = useContext(UserAuthenticated);
+  const [email, setEmail] = useLocalStorage("email", null);
 
   return (
     <NavBarStyled>
@@ -27,7 +27,7 @@ function NavBar() {
       >
         <Link to="/board">BOARD</Link>
       </NavBarStyled.LinkWrapper>
-      {!state ? (
+      {!email ? (
         <NavBarStyled.LinkWrapper
           onClick={() => setMode("login")}
           isActive={mode === "login"}

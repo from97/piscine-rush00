@@ -1,7 +1,7 @@
 import axios from "axios";
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
-import { SetUser } from "../App";
+import { useLocalStorage } from "../App";
 
 const LogoutPageStyled = styled.div`
   width: 500px;
@@ -23,13 +23,13 @@ const LogoutPageStyled = styled.div`
 `;
 
 function LogoutPage() {
-  const setState = useContext(SetUser);
+  const [user, setUser] = useLocalStorage("email", null);
   const handleLogout = async () => {
     await axios
       .get("http://localhost:4242/auth/signout")
       .then(() => {
         alert("로그아웃되셨습니다.");
-        setState(null);
+        setUser(null);
         window.location.replace("/");
       })
       .catch((e) => alert(e));

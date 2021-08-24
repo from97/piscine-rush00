@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import axios from "axios";
 import styled from "styled-components";
-import { UserAuthenticated } from "../App";
+import { useLocalStorage } from "../App";
 
 const ProfilePageStyled = styled.div`
   width: 500px;
@@ -35,9 +35,9 @@ const ProfilePageStyled = styled.div`
 `;
 
 function ProfilePage() {
-  const state = useContext(UserAuthenticated);
+  const [email, setEmail] = useLocalStorage("email", null);
 
-  if (!state) window.location.replace("/");
+  if (!email) window.location.replace("/");
 
   const handleProfile = async () => {
     await axios

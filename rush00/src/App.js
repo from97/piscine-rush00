@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import MainPage from "./pages/MainPage";
 import LoginPage from "./pages/LoginPage";
@@ -45,8 +45,9 @@ export const UserAuthenticated = createContext(null);
 export const SetUser = createContext(() => {});
 
 export function App() {
-  const [email, setEmail] = useState(null);
+  localStorage.clear();
   const [mode, setMode] = useState("home");
+  const [email, setEmail] = useLocalStorage("email", null);
 
   return (
     <div className="App">
@@ -70,4 +71,16 @@ export function App() {
       <GlobalStyle />
     </div>
   );
+}
+
+export function useLocalStorage(key, initialState) {
+  const [state, setState] = useState(
+    () => JSON.parse(window.localStorage.getItem(key)) || initialState
+  );
+
+  useEffect(() => {
+    window.localStorage.setItem(key, JSON.stringify(state));
+  }, [key, state]);
+
+  return [state, setState];
 }

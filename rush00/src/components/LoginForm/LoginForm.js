@@ -1,7 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import { SetUser, UserAuthenticated } from "../../App";
+import { useLocalStorage } from "../../App";
 
 const LoginFormStyled = styled.div`
   display: flex;
@@ -54,8 +54,7 @@ const LoginFormStyled = styled.div`
 `;
 
 function LoginForm() {
-  const state = useContext(UserAuthenticated);
-  const setState = useContext(SetUser);
+  const [user, setUser] = useLocalStorage("email", null);
   const [email, setEmail] = useState("");
   const [passwd, setPasswd] = useState("");
 
@@ -76,11 +75,11 @@ function LoginForm() {
       })
       .then(async (response) => {
         console.log("res: ", response);
-        setState(email);
-        alert(`${state} 님 안녕하세요 :)`);
+        await setUser(email);
+        console.log(document.cookie);
       })
       .catch((e) => alert(e));
-    window.location.replace("/");
+    // window.location.replace("/");
   };
 
   return (
