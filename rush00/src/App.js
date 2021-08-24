@@ -40,7 +40,7 @@ const GlobalStyle = createGlobalStyle`
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+      <BrowserRouter basename="piscine-rush00">
         <header>
           <h1>Markdown Board</h1>
         </header>
